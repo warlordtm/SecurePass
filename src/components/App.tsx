@@ -2,14 +2,14 @@ import '../styles/App.css'
 import Header from './Header'
 import Footer from './Footer'
 import PasswordCard from './PasswordCard'
-import PasswordCardList from './PasswordCardList'
+import PasswordForm from './PasswordForm'
 
 function App() {
   return (
-    <main>
+    <main className='main-section'>
       <Header/>
+      <PasswordForm/>
       <PasswordCard/>
-      <PasswordCardList/>
       <Footer/>
     </main>
   )
