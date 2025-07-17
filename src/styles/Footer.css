@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.footer-section{
+  @apply w-full p-2 text-center dark:bg-stone-900 h-[5%] mt-8
+}
+
+.footer-section p{
+  @apply text-[.9rem] text-gray-500
+}

@@ -3,4 +3,5 @@
 
 .main-section{
   @apply relative flex flex-col justify-center items-center
+  dark:bg-stone-700 dark:text-white
 }

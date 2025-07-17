@@ -10,6 +10,8 @@ function App() {
       <Header/>
       <PasswordForm/>
       <PasswordCard/>
+      {/* <PasswordCard/>
+      <PasswordCard/> */}
       <Footer/>
     </main>
   )
