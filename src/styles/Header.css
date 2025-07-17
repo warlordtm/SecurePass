@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.header{
+  @apply bg-blue-50 flex w-full justify-between items-center p-2 dark:bg-black
+}
+
+.mode{
+  @apply bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-3 py-1 rounded
+}
+
+.mode:hover{
+  @apply bg-gray-400 dark:bg-gray-500
+}
+
+.mode:active{
+  @apply bg-gray-500 dark:bg-gray-500
+}
+
+.logo{
+  @apply dark:text-white
+}
