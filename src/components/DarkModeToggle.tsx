@@ -37,8 +37,8 @@ export default function DarkModeToggle() {
   return (
    
     <div className="darkmode">
-      <div className="da" onClick={toggleLightMode}>{ !dark && '☀️'}</div>
-      <div className="li" onClick={toggleDarkMode}>{dark && '🌙'}</div>
+      <div className="da" onClick={toggleLightMode}>{ !dark && '🌙'}</div>
+      <div className="li" onClick={toggleDarkMode}>{dark && '☀️'}</div>
       {toggle && <div className="toggle1"></div>}
       {!toggle && <div className="toggle2"></div>}
     </div>
