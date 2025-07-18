@@ -1,4 +1,5 @@
 import PasswordCard from "./PasswordCard"
+import { useState } from "react"
 import "../styles/PasswordForm.css"
 
 type formData= {
@@ -12,42 +13,47 @@ type formData= {
 function PasswordForm()
 {
 
-  const addPasswordCard = (formData) => {
-    const website = formData.get("website")
-    const email = formData.get("email")
-    const username = formData.get("username")
-    const password = formData.get("password")
-    const note = formData.get("note")
+  const [passwordcard, setPasswordcard] = useState<formData[]>([])
 
-    alert(" Successfully submitted!")
+  const addPasswordCard = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const formDetails = Object.fromEntries(formData.entries()) as formData;
+    setPasswordcard(prev => [...prev, formDetails])
+    console.log(passwordcard)
   }
   return(
     <>
       <section className="password-form-section">
       <h2>Add New Password</h2>
-      <form action={addPasswordCard}>
+      <form onSubmit={addPasswordCard}>
         <div className="label-divs">
           <label htmlFor="website">Website</label>
-          <input name="website" placeholder="twitter.com" className="input"></input>
+          <input type="text" defaultValue={"twitter.com"} name="website" placeholder="twitter.com" className="input"></input>
 
           <label htmlFor="email">Email</label>
-          <input name="email" placeholder="john@joe.com" type="email" className="input"></input>
+          <input defaultValue={"twittertwittertwitter@gmail.com"} name="email" placeholder="john@joe.com" type="email" className="input"></input>
 
           <label htmlFor="username">Username</label>
-          <input name="username" placeholder="johndoe" className="input"></input>
+          <input defaultValue={"twitter"} name="username" placeholder="johndoe" className="input" type="text"></input>
         </div>
 
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" placeholder="Yk9w/~*/fimwq3" className="input"/>
+          <input type="password" defaultValue={"twitter.com"} name="password" placeholder="Yk9w/~*/fimwq3" className="input"/>
 
           <label htmlFor="note" className="text-area-label">Notes</label>
-          <textarea name="note" id="note" placeholder="type your notes here..." className="text-area"></textarea>
+          <textarea defaultValue={"twitter.com notes"} name="note" id="note" placeholder="type your notes here..." className="text-area"></textarea>
           <div className="btn-div">
             <button type="submit" className="submit-btn">Add</button>
           </div>
         </form>
       </section>
-      <PasswordCard/>
+        {passwordcard.map((card) => (
+          <PasswordCard 
+            key={card.website} 
+            formData={card} 
+          />
+        ))}
     </>
     
   )

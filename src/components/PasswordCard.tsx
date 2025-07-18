@@ -1,13 +1,23 @@
 import "../styles/PasswordCard.css"
 
-function PasswordCard()
+type PasswordCardProps = {
+  formData: {
+    website?: string;
+    email?: string;
+    username?: string;
+    password: string;
+    note?: string;
+  }
+}
+
+function PasswordCard({formData}: PasswordCardProps)
 {
   return(
     <section className="password-card-section">
       <div className="user-details">
-        <p className="website">twitter.com</p>
-        <p className="username-or-email">user@user.com</p>
-        <p>........</p>
+        <p className="website">{formData.website}</p>
+        <p className="username-or-email">{formData.email}</p>
+        <p>{formData.password}</p>
       </div>
       <div className="user-icons">
         <div className="icons">
