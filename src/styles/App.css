@@ -2,6 +2,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .main-section{
-  @apply relative flex flex-col justify-center items-center
+  @apply flex flex-col justify-center items-center
   dark:bg-stone-700 dark:text-white
 }

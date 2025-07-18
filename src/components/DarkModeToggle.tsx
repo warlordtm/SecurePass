@@ -4,8 +4,17 @@ export default function DarkModeToggle() {
   const [dark, setDark] = useState(() =>
     document.documentElement.classList.contains('dark')
   )
+  const [toggle, setToggle] = useState(false)
 
   function toggleDarkMode() {
+    setToggle(prev => !prev)
+    const html = document.documentElement
+    html.classList.toggle('dark')
+    setDark(!dark)
+  }
+
+  function toggleLightMode() {
+    setToggle(prev => !prev)
     const html = document.documentElement
     html.classList.toggle('dark')
     setDark(!dark)
@@ -26,11 +35,12 @@ export default function DarkModeToggle() {
   }, [dark])
 
   return (
-    <button
-      onClick={toggleDarkMode}
-      className="mode"
-    >
-      {dark ? '🌙 Dark' : '☀️ Light'}
-    </button>
+   
+    <div className="darkmode">
+      <div className="da" onClick={toggleLightMode}>{ !dark && '☀️'}</div>
+      <div className="li" onClick={toggleDarkMode}>{dark && '🌙'}</div>
+      {toggle && <div className="toggle1"></div>}
+      {!toggle && <div className="toggle2"></div>}
+    </div>
   )
 }

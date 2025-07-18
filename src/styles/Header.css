@@ -5,18 +5,31 @@
   @apply bg-blue-50 flex w-full justify-between items-center p-2 dark:bg-stone-900 fixed top-0 h-[7%]
 }
 
-.mode{
-  @apply bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-3 py-1 rounded
+.darkmode{
+  @apply bg-gray-200 w-14 h-[90%] flex p-1 justify-between rounded-[37%] relative items-center
+  dark:bg-gray-800
 }
 
-.mode:hover{
-  @apply bg-gray-400 dark:bg-gray-500
+.da, .li{
+  @apply cursor-pointer rounded-4xl
 }
 
-.mode:active{
-  @apply bg-gray-500 dark:bg-gray-500
+.toggle1, .toggle2{
+  @apply rounded-[100%] dark:bg-gray-200
+  bg-gray-800
+}
+
+.toggle1{
+  @apply w-[50%] h-[90%]
+  absolute left-0 bottom-[.1rem]
+}
+
+.toggle2{
+  @apply w-[50%] h-[100%]
+  absolute right-0 bottom-0
 }
 
 .logo{
   @apply dark:text-white
 }
+
