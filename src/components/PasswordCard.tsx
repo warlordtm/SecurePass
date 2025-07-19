@@ -1,33 +1,38 @@
+import { useState } from "react";
 import "../styles/PasswordCard.css"
 
 type PasswordCardProps = {
-  formData: {
-    website?: string;
-    email?: string;
-    username?: string;
-    password: string;
-    note?: string;
-  }
+  onDelete: (id: number) => void
+  website?: string;
+  email?: string;
+  id : number;
+  username?: string;
+  password: string;
+  note?: string;
 }
 
-function PasswordCard({formData}: PasswordCardProps)
+function PasswordCard({ onDelete, website, email, id, username, password, note}: PasswordCardProps)
 {
+  const [showPassword, setShowPassword] = useState(false);
+
   return(
     <section className="password-card-section">
       <div className="user-details">
-        <p className="website">{formData.website}</p>
-        <p className="username-or-email">{formData.email}</p>
-        <p>{formData.password}</p>
+        <p className="website">{website}</p>
+        <p className="username">{username}</p>
+        <p className="username-or-email">{email}</p>
+        <p className="password">{showPassword ? password : "••••••••••••••"}</p>
+        <p className="note">{note}</p>
       </div>
       <div className="user-icons">
         <div className="icons">
-          <img src="/src/assets/notifications.svg" alt="icon" />
+          <img onClick={() => setShowPassword(!showPassword)} src="/src/assets/eye.svg" />
         </div>
         <div className="icons">
-          <img src="/src/assets/search.svg" alt="icon" />
+          <img src="/src/assets/copy.svg" onClick={() => navigator.clipboard.writeText(password)} />
         </div>
-        <div className="icons">
-          <img src="src/assets/voice-search-icon.svg" alt="icon" />
+        <div className="icons" onClick={() => onDelete(id)}>
+          <img src="src/assets/delete.svg" alt="icon" />
         </div>
       </div>
     </section>

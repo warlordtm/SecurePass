@@ -21,7 +21,7 @@
 
 .toggle1{
   @apply w-[50%] h-[90%]
-  absolute left-0 bottom-0
+  absolute left-0 bottom-[.1rem]
 }
 
 .toggle2{
