@@ -59,7 +59,7 @@ function PasswordForm()
         </div>
 
           <label htmlFor="password">Password</label>
-          <input type="password" defaultValue={"A5'`@kO056+/@$\dH"} name="password" placeholder="Yk9w/~*/fimwq3" className="input"/>
+          <input type="password" defaultValue={"A5'`@kO056+/@$\dH"} name="password" placeholder="Yk9w/~*/fimwq3" className="input" />
 
           <label htmlFor="note" className="text-area-label">Notes</label>
           <textarea defaultValue={"Twitter username and password"} name="note" id="note" placeholder="type your notes here..." className="text-area"></textarea>
