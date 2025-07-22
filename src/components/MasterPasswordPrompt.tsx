@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "../styles/PasswordForm.css"
+import "../styles/MasterPasswordPrompt.css"
 
 type Props = {
   onSubmit: (password: string) => void
@@ -49,17 +49,17 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
             className="input"
           />
         )}
-        <button type="submit" className="submit-btn">Unlock</button>
+        <button type="submit" className="submit-btn">UNLOCK</button>
       </form>
 
       {localStorage.getItem("hint") && (
         <p className="hint-text">
-          🔑 Password Hint: <strong>{localStorage.getItem("hint")}</strong>
+          🔑 Password Hint: {localStorage.getItem("hint")}
         </p>
       )}
 
       <button onClick={handleReset} className="submit-btn danger">
-        Reset Everything
+        RESET
       </button>
     </div>
   )

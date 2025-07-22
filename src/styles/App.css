@@ -1,7 +1,15 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer base{
+  body{
+    @apply bg-white
+    text-black
+    dark:bg-stone-700 dark:text-white
+  }
+}
+
+
 .main-section{
   @apply flex flex-col justify-center items-center
-  dark:bg-stone-700 dark:text-white
 }
