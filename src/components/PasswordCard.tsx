@@ -35,6 +35,27 @@ function PasswordCard({
         <button onClick={() => onDelete(id)} className="delete-btn icons">Delete</button>
       </div>
     </div>
+
+
+<section className="password-card-section">
+      <div className="user-details">
+        <p className="website">{website || "No Website"}</p>
+        <p className="username-or-email">{email || "N/A"}</p>
+        <p className="username">{username || "N/A"}</p>
+        <p>{password}</p>
+      </div>
+      <div className="user-icons">
+        <div className="icons">
+          <img src="/src/assets/notifications.svg" alt="icon" />
+        </div>
+        <div className="icons">
+          <img src="/src/assets/search.svg" alt="icon" />
+        </div>
+        <div className="icons">
+          <img src="src/assets/voice-search-icon.svg" alt="icon" />
+        </div>
+      </div>
+    </section>
   )
 }
 
