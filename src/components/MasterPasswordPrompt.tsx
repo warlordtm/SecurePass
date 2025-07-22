@@ -31,49 +31,51 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
   }
 
   return (
-    <div className="master-password-prompt">
-      {!localStorage.getItem("card") ? <h2>CREATE MASTER PASSWORD</h2> : <h2>ENTER MASTER PASSWORD</h2>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          placeholder="Master Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          className="input"
-        />
-        {!localStorage.getItem("card") && (
-          <>
-            {/* <label htmlFor="password">Confirm password</label>
-            <input
-              name="password"
-              type="password"
-              value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
-              className="input"
-            /> */}
-            <input
-              type="text"
-              placeholder="Password Hint (optional)"
-              value={hint}
-              onChange={e => setHint(e.target.value)}
-              className="input hint"
-            />
-          </>
+    <>
+      <div className="master-password-prompt">
+        {!localStorage.getItem("card") ? <h2>CREATE MASTER PASSWORD</h2> : <h2>ENTER MASTER PASSWORD</h2>}
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            placeholder="Master Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className="input"
+          />
+          {!localStorage.getItem("card") && (
+            <>
+              {/* <label htmlFor="password">Confirm password</label>
+              <input
+                name="password"
+                type="password"
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                className="input"
+              /> */}
+              <input
+                type="text"
+                placeholder="Password Hint (optional)"
+                value={hint}
+                onChange={e => setHint(e.target.value)}
+                className="input hint"
+              />
+            </>
+          )}
+          {!localStorage.getItem("card") ? <button type="submit" className="submit-btn">LOCK</button> : <button type="submit" className="submit-btn">UNLOCK</button>}
+        </form>
+
+        {localStorage.getItem("hint") && (
+          <p className="hint-text">
+            🔑 Password Hint: {localStorage.getItem("hint")}
+          </p>
         )}
-        {!localStorage.getItem("card") ? <button type="submit" className="submit-btn">LOCK</button> : <button type="submit" className="submit-btn">UNLOCK</button>}
-      </form>
 
-      {localStorage.getItem("hint") && (
-        <p className="hint-text">
-          🔑 Password Hint: {localStorage.getItem("hint")}
-        </p>
-      )}
-
-      {localStorage.getItem("card") && <button onClick={handleReset} className="submit-btn danger">
-       - reset password -
-      </button>}
-    </div>
+        {localStorage.getItem("card") && <button onClick={handleReset} className="submit-btn danger">
+        - reset password -
+        </button>}
+      </div>
+    </>
   )
 }
 

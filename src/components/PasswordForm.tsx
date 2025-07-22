@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import "../styles/PasswordForm.css"
 import CryptoJS from "crypto-js"
 import MasterPasswordPrompt from "./MasterPasswordPrompt"
+import Footer from "./Footer"
 
 type formData = {
   website?: string
@@ -111,10 +112,10 @@ function PasswordForm() {
       <section className="password-form-section">
         <h2>{editIndex !== null ? "Edit Password" : "Add New Password"}</h2>
 
-        {/* 🔍 Search Filter */}
+        {/*  Search Filter */}
         <input
           type="text"
-          placeholder="Search passwords..."
+          placeholder="🔍  Search passwords..."
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className="input search-input"
@@ -180,6 +181,7 @@ function PasswordForm() {
       </section>
 
       <>{getCard}</>
+      <Footer/>
     </>
   )
 }
