@@ -42,7 +42,7 @@ function PasswordCard({
           <img src="/src/assets/copy.svg" alt="copy-icon" />
         </div>
         <div className="icons" onClick={() => onDelete(id)}>
-          <img src="src/assets/delete.svg" alt="icon" />
+          <img src="/src/assets/delete.svg" alt="icon" />
         </div>
         <div onClick={() => onEdit(id)} className="edit-btn icons">edit</div>
       </div>
@@ -51,18 +51,3 @@ function PasswordCard({
 }
 
 export default PasswordCard
-
-
-/* <div className="password-card-section">
-      <div className="user-details">
-        <h3>{website || "No Website"}</h3>
-        <p>Email: {email || "N/A"}</p>
-        <p>Username: {username || "N/A"}</p>
-        <p>Password: {password}</p>
-        <p>Note: {note || "None"}</p>
-      </div>
-      <div className="user-icons">
-        <button onClick={() => onEdit(id)} className="edit-btn icons">Edit</button>
-        <button onClick={() => onDelete(id)} className="delete-btn icons">Delete</button>
-      </div>
-    </div> */

@@ -29,29 +29,40 @@ function PasswordForm() {
   // Load from localStorage
   useEffect(() => {
     if (!masterPassword) return
+
     const saved = localStorage.getItem("card")
     if (saved) {
       try {
         const bytes = CryptoJS.AES.decrypt(saved, masterPassword)
-        const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+        const decryptedStr = bytes.toString(CryptoJS.enc.Utf8)
+
+        if (!decryptedStr) throw new Error("Decryption failed")
+
+        const decrypted = JSON.parse(decryptedStr)
         setPasswordcard(decrypted)
+
       } catch (error) {
-        setMasterPassword(null)
         alert("Incorrect master password or data corrupted")
+        setMasterPassword(null)
       }
     }
   }, [masterPassword])
 
   // Save to localStorage
   useEffect(() => {
-    if (masterPassword) {
-      const encrypted = CryptoJS.AES.encrypt(
+      if (!masterPassword) return
+      if (passwordcard.length === 0) return 
+
+      try{
+        const encrypted = CryptoJS.AES.encrypt(
         JSON.stringify(passwordcard),
         masterPassword
-      ).toString()
-      localStorage.setItem("card", encrypted)
-    }
-  }, [passwordcard, masterPassword])
+        ).toString()
+        localStorage.setItem("card", encrypted)
+      }catch (err) {
+        console.error("Failed to save card", err)
+      }
+    }, [passwordcard, masterPassword])
 
   const addPasswordCard = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
