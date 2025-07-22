@@ -7,6 +7,7 @@ type Props = {
 
 function MasterPasswordPrompt({ onSubmit }: Props) {
   const [password, setPassword] = useState("")
+  //const [confirmPassword, setConfirmPassword] = useState("")
   const [hint, setHint] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,8 +32,9 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
 
   return (
     <div className="master-password-prompt">
-      <h2>Enter Master Password</h2>
+      {!localStorage.getItem("card") ? <h2>CREATE MASTER PASSWORD</h2> : <h2>ENTER MASTER PASSWORD</h2>}
       <form onSubmit={handleSubmit}>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           placeholder="Master Password"
@@ -41,15 +43,25 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
           className="input"
         />
         {!localStorage.getItem("card") && (
-          <input
-            type="text"
-            placeholder="Password Hint (optional)"
-            value={hint}
-            onChange={e => setHint(e.target.value)}
-            className="input"
-          />
+          <>
+            {/* <label htmlFor="password">Confirm password</label>
+            <input
+              name="password"
+              type="password"
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+              className="input"
+            /> */}
+            <input
+              type="text"
+              placeholder="Password Hint (optional)"
+              value={hint}
+              onChange={e => setHint(e.target.value)}
+              className="input hint"
+            />
+          </>
         )}
-        <button type="submit" className="submit-btn">UNLOCK</button>
+        {!localStorage.getItem("card") ? <button type="submit" className="submit-btn">LOCK</button> : <button type="submit" className="submit-btn">UNLOCK</button>}
       </form>
 
       {localStorage.getItem("hint") && (
@@ -58,9 +70,9 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
         </p>
       )}
 
-      <button onClick={handleReset} className="submit-btn danger">
-        RESET
-      </button>
+      {localStorage.getItem("card") && <button onClick={handleReset} className="submit-btn danger">
+       - reset password -
+      </button>}
     </div>
   )
 }

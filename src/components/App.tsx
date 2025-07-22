@@ -9,7 +9,7 @@ function App() {
     <main className='main-section'>
       <Header/>
       <PasswordForm/>
-      <Footer/>
+      {/* <Footer/> */}
     </main>
   )
 }
