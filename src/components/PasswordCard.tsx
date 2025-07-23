@@ -45,17 +45,17 @@ function PasswordCard({
       </div>
       <div className="user-icons">
         <div className="icons" onClick={() => setSeen(prev => !prev)}>
-          <img src={ seen ? "/src/assets/eye.svg" : "/src/assets/unmask.svg"} alt="eye-icon" />
+          <img src={ seen ? "/assets/eye.svg" : "/assets/unmask.svg"} alt="eye-icon" />
         </div>
         <div className="icons copy-container" onClick={handleCopy}>
-          <img src="/src/assets/copy.svg" alt="copy-icon" />
+          <img src="/assets/copy.svg" alt="copy-icon" />
 	  {isCopied && <div className="tooltip">Copied!</div>}
         </div>
         <div className="icons" onClick={() => onDelete(id)}>
-          <img src="/src/assets/delete.svg" alt="icon" />
+          <img src="/assets/delete.svg" alt="icon" />
         </div>
         <div onClick={() => onEdit(id)} className="icons">
-	  <img src="/src/assets/edit.svg" alt="edit" />
+	  <img src="/assets/edit.svg" alt="edit" />
 	</div>
       </div>
     </section>
