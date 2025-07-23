@@ -23,28 +23,40 @@ function PasswordCard({
   onEdit
 }: Props) 
 {
-
+  const [isCopied, setIsCopied] = useState(false);
   const [seen, setSeen] = useState(false)
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(password);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
   return (
     <section className="password-card-section">
       <div className="user-details">
         <p className="website">{website || "No Website"}</p>
         <p className="username-or-email">{email || "N/A"}</p>
         <p className="username">{username || "N/A"}</p>
-        {!seen ? ".........." : <p>{password}</p>}
+        {!seen ? "••••••••••••••" : <p>{password}</p>}
         <p>Note: {note || "None"}</p>
       </div>
       <div className="user-icons">
         <div className="icons" onClick={() => setSeen(prev => !prev)}>
           <img src={ seen ? "/src/assets/eye.svg" : "/src/assets/unmask.svg"} alt="eye-icon" />
         </div>
-        <div className="icons">
+        <div className="icons copy-container" onClick={handleCopy}>
           <img src="/src/assets/copy.svg" alt="copy-icon" />
+	  {isCopied && <div className="tooltip">Copied!</div>}
         </div>
         <div className="icons" onClick={() => onDelete(id)}>
           <img src="/src/assets/delete.svg" alt="icon" />
         </div>
-        <div onClick={() => onEdit(id)} className="edit-btn icons">edit</div>
+        <div onClick={() => onEdit(id)} className="icons">
+	  <img src="/src/assets/edit.svg" alt="edit" />
+	</div>
       </div>
     </section>
   )
