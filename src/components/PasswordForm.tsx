@@ -10,7 +10,6 @@ type formData = {
   email?: string
   username?: string
   password: string
-  note?: string
 }
 
 function PasswordForm() {
@@ -20,7 +19,6 @@ function PasswordForm() {
     email: "",
     username: "",
     password: "",
-    note: ""
   })
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
@@ -84,7 +82,6 @@ function PasswordForm() {
       email: "",
       username: "",
       password: "",
-      note: ""
     })
   }
 
@@ -173,15 +170,6 @@ function PasswordForm() {
             className="input"
             required
           />
-
-          {/* Note */}
-          <label htmlFor="note">Note</label>
-          <textarea
-            name="note"
-            value={formState.note}
-            onChange={e => setFormState({ ...formState, note: e.target.value })}
-            className="text-area"
-          ></textarea>
 
           <div className="btn-div">
             <button type="submit" className="submit-btn">

@@ -7,7 +7,6 @@ type Props = {
   email?: string
   username?: string
   password: string
-  note?: string
   onDelete: (id: number) => void
   onEdit: (id: number) => void
 }
@@ -18,7 +17,6 @@ function PasswordCard({
   email,
   username,
   password,
-  note,
   onDelete,
   onEdit
 }: Props) 
@@ -41,7 +39,6 @@ function PasswordCard({
         <p className="username-or-email">{email || "N/A"}</p>
         <p className="username">{username || "N/A"}</p>
         {!seen ? "••••••••••••••" : <p>{password}</p>}
-        <p>Note: {note || "None"}</p>
       </div>
       <div className="user-icons">
         <div className="icons" onClick={() => setSeen(prev => !prev)}>
