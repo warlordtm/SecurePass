@@ -12,7 +12,6 @@ function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props
   const [password, setPassword] = useState<string>("")
   const [hint, setHint] = useState<string>("")
   const [validPassword, setValidPassword] = useState<boolean>(true)
-  const [passwordLength, setPasswordLength] = useState<boolean>(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -21,7 +20,6 @@ function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props
     if (!localStorage.getItem("card")) {
       localStorage.setItem("hint", hint)
     }
-    if(password.length < 7) return setPasswordLength(true)
     onSubmit(password)
   }
 
@@ -49,8 +47,8 @@ function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props
 
           <div className="wrong-password-div">
             {failed && <p className="wrong-password">{manyAttempts === false ? 'Incorrect master password' : 'too many attempts, try again later!'}</p>}
-            {!validPassword && <p className="wrong-password">password field cannot be empty!</p>}
-            {passwordLength && <p className="wrong-password">minimum password length is 7</p>}
+            {validPassword === false && <p className="wrong-password">password field cannot be empty!</p>}
+            {password.length <= 7 && <p className="wrong-password">minimum password length is 7</p>}
           </div>
 
           {!localStorage.getItem("card") && (
