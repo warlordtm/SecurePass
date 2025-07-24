@@ -28,13 +28,8 @@ function PasswordForm() {
   const [timedOut, setTimedOut] = useState<boolean>(false)
   const [manyAttempts, setManyAttempts] = useState<boolean>(false)
   
-  const handleTimeout = async() => {
-    setTimedOut(false)
-    console.log("try again!")
-  }
-  
 
-  // Load from localStorage
+  // Load from localStorager
   useEffect(() => {
     if (!masterPassword) return
 
@@ -49,6 +44,8 @@ function PasswordForm() {
         const decrypted = JSON.parse(decryptedStr)
         setPasswordcard(decrypted)
 
+        console.log(masterPassword)
+
       } catch (error) {
         setFailedAttempt(true)
         setTrials(prev => prev + 1)
@@ -58,7 +55,7 @@ function PasswordForm() {
         {
           setTimedOut(true)
           setManyAttempts(true)
-          setTimeout(handleTimeout, 5000)
+          setTimeout(() => setTimedOut(false), 60000)
           setTrials(0)
         }
         setMasterPassword(null)
@@ -97,12 +94,7 @@ function PasswordForm() {
     }
 
     // Reset form
-    setFormState({
-      website: "",
-      email: "",
-      username: "",
-      password: "",
-    })
+    setFormState({ website: "", email: "", username: "", password: "" })
 
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
