@@ -7,7 +7,6 @@ type Props = {
 
 function MasterPasswordPrompt({ onSubmit }: Props) {
   const [password, setPassword] = useState("")
-  //const [confirmPassword, setConfirmPassword] = useState("")
   const [hint, setHint] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,6 +33,8 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
     <>
       <div className="master-password-prompt">
         {!localStorage.getItem("card") ? <h2>CREATE MASTER PASSWORD</h2> : <h2>ENTER MASTER PASSWORD</h2>}
+
+
         <form onSubmit={handleSubmit}>
           <label htmlFor="password">Password</label>
           <input
@@ -43,16 +44,9 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
             onChange={e => setPassword(e.target.value)}
             className="input"
           />
+          
           {!localStorage.getItem("card") && (
             <>
-              {/* <label htmlFor="password">Confirm password</label>
-              <input
-                name="password"
-                type="password"
-                value={confirmPassword}
-                onChange={e => setConfirmPassword(e.target.value)}
-                className="input"
-              /> */}
               <input
                 type="text"
                 placeholder="Password Hint (optional)"
@@ -62,8 +56,10 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
               />
             </>
           )}
+
           {!localStorage.getItem("card") ? <button type="submit" className="submit-btns">LOCK</button> : <button type="submit" className="submit-btns">UNLOCK</button>}
         </form>
+
 
         {localStorage.getItem("hint") && (
           <p className="hint-text">

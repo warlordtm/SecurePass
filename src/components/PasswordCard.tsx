@@ -36,9 +36,9 @@ function PasswordCard({
     <section className="password-card-section">
       <div className="user-details">
         <p className="website">{website || "No Website"}</p>
-        <p className="email p">{email || "N/A"}</p>
+        <p className="email p">{email || "N/A"}</p> 
         <p className="username p">{username || "N/A"}</p>
-        {!seen ? "••••••••••••••" : <p>{password}</p>}
+        {!seen ? <p className="p">••••••••••••••••</p> : <p className="p">{password}</p>}
       </div>
       <div className="user-icons">
         <div className="icons" onClick={() => setSeen(prev => !prev)}>
