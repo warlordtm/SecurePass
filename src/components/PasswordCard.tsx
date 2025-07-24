@@ -12,14 +12,7 @@ type Props = {
 }
 
 function PasswordCard({
-  id,
-  website,
-  email,
-  username,
-  password,
-  onDelete,
-  onEdit
-}: Props) 
+  id, website, email, username, password, onDelete, onEdit}: Props) 
 {
   const [isCopied, setIsCopied] = useState(false);
   const [seen, setSeen] = useState(false)

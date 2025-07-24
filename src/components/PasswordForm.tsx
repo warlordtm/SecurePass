@@ -23,6 +23,16 @@ function PasswordForm() {
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [masterPassword, setMasterPassword] = useState<string | null>(null)
+  const [failedAttempt, setFailedAttempt] = useState<boolean>(false)
+  const [trials, setTrials] = useState<number>(0)
+  const [timedOut, setTimedOut] = useState<boolean>(false)
+  const [manyAttempts, setManyAttempts] = useState<boolean>(false)
+  
+  const handleTimeout = async() => {
+    setTimedOut(false)
+    console.log("try again!")
+  }
+  
 
   // Load from localStorage
   useEffect(() => {
@@ -40,7 +50,17 @@ function PasswordForm() {
         setPasswordcard(decrypted)
 
       } catch (error) {
-        alert("Incorrect master password or data corrupted")
+        setFailedAttempt(true)
+        setTrials(prev => prev + 1)
+        console.log(trials)
+
+        if(trials >= 2)
+        {
+          setTimedOut(true)
+          setManyAttempts(true)
+          setTimeout(handleTimeout, 5000)
+          setTrials(0)
+        }
         setMasterPassword(null)
       }
     }
@@ -83,6 +103,8 @@ function PasswordForm() {
       username: "",
       password: "",
     })
+
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   const deleteCard = (id: number) => {
@@ -112,7 +134,7 @@ function PasswordForm() {
   ))
 
   if (!masterPassword) {
-    return <MasterPasswordPrompt onSubmit={setMasterPassword} />
+    return <MasterPasswordPrompt onSubmit={setMasterPassword} failed={failedAttempt} timeOut={timedOut} manyAttempts={manyAttempts}/>
   }
 
   return (

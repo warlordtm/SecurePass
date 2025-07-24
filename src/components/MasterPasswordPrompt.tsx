@@ -2,24 +2,28 @@ import { useState } from "react"
 import "../styles/MasterPasswordPrompt.css"
 
 type Props = {
+  failed: boolean,
+  timeOut: boolean,
+  manyAttempts: boolean,
   onSubmit: (password: string) => void
 }
 
-function MasterPasswordPrompt({ onSubmit }: Props) {
+function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props) {
   const [password, setPassword] = useState("")
   const [hint, setHint] = useState("")
+  const [validPassword, setValidPassword] = useState(true)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!password) return alert("Please enter a password")
+    if (!password) return setValidPassword(false)
 
     if (!localStorage.getItem("card")) {
-      // Saving hint only on first setup
       localStorage.setItem("hint", hint)
     }
 
     onSubmit(password)
   }
+
 
   const handleReset = () => {
     if (confirm("This will delete all saved data. Proceed?")) {
@@ -34,17 +38,19 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
       <div className="master-password-prompt">
         {!localStorage.getItem("card") ? <h2>CREATE MASTER PASSWORD</h2> : <h2>ENTER MASTER PASSWORD</h2>}
 
-
         <form onSubmit={handleSubmit}>
-          <label htmlFor="password">Password</label>
           <input
             type="password"
-            placeholder="Master Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             className="input"
           />
-          
+
+          <div className="wrong-password-div">
+            {failed && <p className="wrong-password">{!manyAttempts ? 'Incorrect master password' : 'too many attempts, try again later!'}</p>}
+            {!validPassword && <p className="wrong-password">password field cannot be empty!</p>}
+          </div>
+
           {!localStorage.getItem("card") && (
             <>
               <input
@@ -57,7 +63,7 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
             </>
           )}
 
-          {!localStorage.getItem("card") ? <button type="submit" className="submit-btns">LOCK</button> : <button type="submit" className="submit-btns">UNLOCK</button>}
+          {!localStorage.getItem("card") ? <button type="submit" className="submit-btns">LOCK</button> : <button type="submit" disabled={timeOut === true} className="submit-btns">UNLOCK</button>}
         </form>
 
 
@@ -68,7 +74,7 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
         )}
 
         {localStorage.getItem("card") && <button onClick={handleReset} className="submit-btn danger">
-        - reset password -
+        - &nbsp;reset password &nbsp;-
         </button>}
       </div>
     </>
