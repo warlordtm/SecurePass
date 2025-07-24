@@ -36,8 +36,8 @@ function PasswordCard({
     <section className="password-card-section">
       <div className="user-details">
         <p className="website">{website || "No Website"}</p>
-        <p className="username-or-email">{email || "N/A"}</p>
-        <p className="username">{username || "N/A"}</p>
+        <p className="email p">{email || "N/A"}</p>
+        <p className="username p">{username || "N/A"}</p>
         {!seen ? "••••••••••••••" : <p>{password}</p>}
       </div>
       <div className="user-icons">
@@ -52,8 +52,8 @@ function PasswordCard({
           <img src="/assets/delete.svg" alt="icon" />
         </div>
         <div onClick={() => onEdit(id)} className="icons">
-	  <img src="/assets/edit.svg" alt="edit" />
-	</div>
+          <img src="/assets/edit.svg" alt="edit" />
+        </div>
       </div>
     </section>
   )

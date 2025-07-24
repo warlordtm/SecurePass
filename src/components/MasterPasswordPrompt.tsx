@@ -62,7 +62,7 @@ function MasterPasswordPrompt({ onSubmit }: Props) {
               />
             </>
           )}
-          {!localStorage.getItem("card") ? <button type="submit" className="submit-btn">LOCK</button> : <button type="submit" className="submit-btn">UNLOCK</button>}
+          {!localStorage.getItem("card") ? <button type="submit" className="submit-btns">LOCK</button> : <button type="submit" className="submit-btns">UNLOCK</button>}
         </form>
 
         {localStorage.getItem("hint") && (
