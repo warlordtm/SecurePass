@@ -20,6 +20,7 @@ function PasswordForm() {
     username: "",
     password: "",
   })
+
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [masterPassword, setMasterPassword] = useState<string | null>(null)
@@ -49,7 +50,7 @@ function PasswordForm() {
         setTrials(prev => prev + 1)
         console.log(trials)
 
-        if(trials >= 2)
+        if(trials >= 3)
         {
           setTimedOut(true)
           setManyAttempts(true)

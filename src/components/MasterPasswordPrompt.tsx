@@ -11,12 +11,12 @@ type Props = {
 function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props) {
   const [password, setPassword] = useState<string>("")
   const [hint, setHint] = useState<string>("")
-  const [validPassword, setValidPassword] = useState<boolean>(true)
   const [passwordLength, setPasswordLength] = useState<boolean>(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!password) return setValidPassword(false)
+    if (!password) return alert("Password field cannot be empty!")
+    setPasswordLength(false)
 
     if (!localStorage.getItem("card")) {
       localStorage.setItem("hint", hint)
@@ -50,7 +50,6 @@ function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props
           />
 
           <div className="wrong-password-div">
-            {validPassword && <p className="wrong-password">password field cannot be empty!</p>}
             {passwordLength && <p className="wrong-password">minimum password length is 7</p>}
           </div>
 
