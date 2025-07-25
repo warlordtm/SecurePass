@@ -24,7 +24,7 @@ function PasswordForm() {
   const [searchTerm, setSearchTerm] = useState("")
   const [masterPassword, setMasterPassword] = useState<string | null>(null)
   const [failedAttempt, setFailedAttempt] = useState<boolean>(false)
-  const [trials, setTrials] = useState<number>(0)
+  const [trials, setTrials] = useState<number>(1)
   const [timedOut, setTimedOut] = useState<boolean>(false)
   const [manyAttempts, setManyAttempts] = useState<boolean>(false)
   
@@ -44,8 +44,6 @@ function PasswordForm() {
         const decrypted = JSON.parse(decryptedStr)
         setPasswordcard(decrypted)
 
-        console.log(masterPassword)
-
       } catch (error) {
         setFailedAttempt(true)
         setTrials(prev => prev + 1)
@@ -57,7 +55,10 @@ function PasswordForm() {
           setManyAttempts(true)
           setTimeout(() => setTimedOut(false), 60000)
           setTrials(0)
-        }
+          alert("Too many failed attempts. Locked for 60 seconds.")
+        } else {
+        alert(`Incorrect password. Attempt ${trials}/3`)
+      }
         setMasterPassword(null)
       }
     }
@@ -107,7 +108,7 @@ function PasswordForm() {
     const card = passwordcard[index]
     setFormState(card)
     setEditIndex(index)
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
 
   const filteredCards = passwordcard.filter(card => {

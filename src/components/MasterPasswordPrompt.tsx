@@ -50,7 +50,6 @@ function MasterPasswordPrompt({ onSubmit, failed, timeOut, manyAttempts }: Props
           />
 
           <div className="wrong-password-div">
-            {failed && <p className="wrong-password">{manyAttempts === false ? 'Incorrect master password' : 'too many attempts, try again later!'}</p>}
             {validPassword && <p className="wrong-password">password field cannot be empty!</p>}
             {passwordLength && <p className="wrong-password">minimum password length is 7</p>}
           </div>
